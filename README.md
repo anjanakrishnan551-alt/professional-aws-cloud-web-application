@@ -1,51 +1,35 @@
 # Professional AWS Cloud Web Application
 
-A professional-level AWS cloud engineering project focused on building a secure, scalable, highly available web application architecture using Terraform and core AWS services.
+This is a cloud engineering project I am building to understand how a real web application can be designed and hosted on AWS.
 
-## Project Objective
+The main goal of this project is to learn how different AWS services work together to create a secure, scalable and highly available application.
 
-This project demonstrates how a production-style cloud web application can be designed using Infrastructure as Code and AWS best practices.
+I am using Terraform so the infrastructure can be created and managed as code instead of setting everything up manually in the AWS Console.
 
-The architecture will include:
+## What I am building
 
-- Multi-AZ VPC networking
-- Public, application, and database subnet tiers
-- Application Load Balancer
-- Auto Scaling compute layer
-- Private application servers
-- Amazon RDS managed database
-- IAM and security groups
-- CloudWatch monitoring
-- High availability and fault tolerance
-- Terraform-based infrastructure provisioning
+The application architecture will include:
 
-## Current Progress
-
-Completed:
-
-- Terraform project structure
-- AWS provider configuration
-- VPC foundation
-- Internet Gateway
-- Public subnets across two Availability Zones
-- Private application subnets
-- Private database subnets
-- Public route table
-- NAT Gateway architecture
-- Private application route tables
-- Isolated database routing
-- Terraform outputs
-- Terraform validation
+- A VPC for the main AWS network
+- Public subnets for internet-facing resources
+- Private application subnets for the app servers
+- Private database subnets for Amazon RDS
+- An Application Load Balancer
+- Auto Scaling for the application servers
+- Amazon RDS for the database
+- Security Groups and IAM for access control
+- CloudWatch for monitoring and logs
+- Terraform for Infrastructure as Code
 
 ## Architecture
 
-The planned request flow is:
+The basic traffic flow will be:
 
 ```text
 Internet
    |
 Application Load Balancer
    |
-Private Application Tier
+Private Application Servers
    |
-Amazon RDS Database
+Amazon RDS
