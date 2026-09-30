@@ -41,3 +41,7 @@ variable "desired_capacity" {
   type        = number
   default     = 2
 }
+variable "iam_instance_profile_name" {
+  description = "IAM instance profile attached to EC2 instances."
+  type        = string
+}
