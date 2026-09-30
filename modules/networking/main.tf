@@ -4,16 +4,16 @@ resource "aws_vpc" "this" {
   enable_dns_hostnames = true
 
   tags = {
-  Name = "${var.environment}-cloud-webapp-vpc"
-}
+    Name = "${var.environment}-cloud-webapp-vpc"
+  }
 }
 
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
   tags = {
-  Name = "${var.environment}-cloud-webapp-igw"
-}
+    Name = "${var.environment}-cloud-webapp-igw"
+  }
 }
 resource "aws_subnet" "public" {
   count = length(var.availability_zones)
