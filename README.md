@@ -174,3 +174,46 @@ Through this project I learned:
 - How CloudWatch can be used for monitoring
 - How to validate, deploy and destroy infrastructure using Terraform
 - How to manage infrastructure code using Git and GitHub
+
+
+## Screenshots
+
+### Terraform Infrastructure Deployment
+
+![Terraform Apply](screenshots/01-terraform-apply-success.png%20%282%29.png)
+
+### Working Application
+
+![Working Application](screenshots/02-working-application.png)
+
+### Application Load Balancer
+
+![Application Load Balancer](screenshots/03-application-load-balancer.png)
+
+### Target Group
+
+![Healthy Target Group](screenshots/04-target-group-healthy.png)
+
+### Auto Scaling
+
+![Auto Scaling Group](screenshots/05-auto-scaling-group.png.png)
+
+### EC2 Instances
+
+![EC2 Instances](screenshots/06-ec2-instances.png.png)
+
+### Amazon RDS
+
+![RDS MySQL](screenshots/07-rds-mysql.png)
+
+### CloudWatch Monitoring
+
+![CloudWatch Alarms](screenshots/08-cloudwatch-alarms.png.png)
+
+### Security Groups
+
+![Security Groups](screenshots/09-security-groups.png)
+
+### VPC Subnets
+
+![VPC Subnets](screenshots/10-vpc-subnets.png)
