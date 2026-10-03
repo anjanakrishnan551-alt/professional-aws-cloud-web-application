@@ -14,32 +14,32 @@ resource "aws_launch_template" "app" {
   instance_type = var.instance_type
 
   vpc_security_group_ids = [var.app_security_group_id]
+
   iam_instance_profile {
     name = var.iam_instance_profile_name
   }
 
   user_data = base64encode(<<-EOF
-              #!/bin/bash
-              dnf update -y
-              dnf install -y nginx
+    #!/bin/bash
+    dnf update -y
+    dnf install -y nginx
 
-              cat <<HTML > /usr/share/nginx/html/index.html
-              <html>
-                <head>
-                  <title>AWS Cloud Web Application</title>
-                </head>
-                <body>
-                  <h1>Professional AWS Cloud Web Application</h1>
-                  <p>This application is running on an EC2 instance behind an Application Load Balancer.</p>
-                  <p>Hostname: $(hostname)</p>
-                </body>
-              </html>
-              HTML
+    cat <<HTML > /usr/share/nginx/html/index.html
+    <html>
+      <head>
+        <title>AWS Cloud Web Application</title>
+      </head>
+      <body>
+        <h1>Professional AWS Cloud Web Application</h1>
+        <p>This application is running on an EC2 instance behind an Application Load Balancer.</p>
+        <p>Hostname: $(hostname)</p>
+      </body>
+    </html>
+    HTML
 
-              systemctl enable nginx
-              systemctl start nginx
-              EOF
-
+    systemctl enable nginx
+    systemctl start nginx
+  EOF
   )
 
   tag_specifications {
@@ -66,23 +66,24 @@ resource "aws_autoscaling_group" "app" {
     id      = aws_launch_template.app.id
     version = "$Latest"
   }
-  resource "aws_autoscaling_policy" "cpu_target" {
-    name                   = "${var.environment}-cloud-webapp-cpu-scaling"
-    autoscaling_group_name = aws_autoscaling_group.app.name
-    policy_type            = "TargetTrackingScaling"
-
-    target_tracking_configuration {
-      predefined_metric_specification {
-        predefined_metric_type = "ASGAverageCPUUtilization"
-      }
-
-      target_value = 50.0
-    }
-  }
 
   tag {
     key                 = "Name"
     value               = "${var.environment}-cloud-webapp-app"
     propagate_at_launch = true
+  }
+}
+
+resource "aws_autoscaling_policy" "cpu_target" {
+  name                   = "${var.environment}-cloud-webapp-cpu-scaling"
+  autoscaling_group_name = aws_autoscaling_group.app.name
+  policy_type            = "TargetTrackingScaling"
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+
+    target_value = 50.0
   }
 }

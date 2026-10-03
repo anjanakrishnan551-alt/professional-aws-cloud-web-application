@@ -3,7 +3,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project     = "ha-aws-three-tier"
+      Project     = "professional-aws-cloud-web-application"
       Environment = var.environment
       ManagedBy   = "Terraform"
     }
